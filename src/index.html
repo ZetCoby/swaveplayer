@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/swaveplayer.esm.js"></script>
+  <script nomodule src="/build/swaveplayer.js"></script>
+
+</head>
+<style>
+  html, body {
+    background: #262626;
+  }
+
+  .credits {
+    display: inline-block;
+    color: white;
+    font-family: sans-serif;
+    padding: 25px 0;
+  }
+
+  .credits a {
+    color: rgb(64, 168, 224);
+  }
+
+  </style>
+<body>
+<!--
+  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component> -->
+<span class = "credits">Music "A new beginning" from <a href="https://www.bensound.com/">Bensound.com</a>, licensed as CC
+    BY-ND.</span><br>
+<swave-player audio-url="https://bogdancornianu.com/content/bensound-anewbeginning.mp3" audio-title="Music 'A new beginning' from Bensound.com, licensed as CC BY-ND.">
+</swave-player>
+</body>
+</html>

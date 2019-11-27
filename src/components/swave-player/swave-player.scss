@@ -1,0 +1,168 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+$btnColor: #fff;
+$progressColor: #262626;
+$accentColor: #E89005;
+
+
+
+.swave-player {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Roboto', sans-serif;
+  background: #fff;
+
+  .thumbnail {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+
+    .controls {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+      opacity: 0.7;
+      transition: background-color .3s, opacity .3s;
+
+      &:hover {
+        background: rgba(232, 144, 5, 0.3);
+        opacity: 1;
+      }
+
+      .fast-forward {
+        margin: 0 5px;
+        cursor: pointer;
+        span {
+          display: inline-block;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 10px 0 10px 16px;
+          border-color: transparent transparent transparent $btnColor;
+        }
+      }
+
+      .fast-backward {
+        margin: 0 5px;
+        cursor: pointer;
+        span {
+          display: inline-block;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 10px 16px 10px 0;
+          border-color: transparent $btnColor transparent transparent;
+        }
+      }
+
+      .play-stop {
+        cursor: pointer;
+        padding: 0 12px;
+        text-align: center;
+        span {
+          // transition: border .1s;
+          &.pause {
+            border-left: 5px solid $btnColor;
+            border-right: 5px solid $btnColor;
+            width: 6px;
+            height: 20px;
+            display: inline-block;
+          }
+          &.play {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 16px;
+            border-color: transparent transparent transparent $btnColor;
+          }
+        }
+      }
+    }
+  }
+
+  .actions {
+    position: relative;
+    flex: 1;
+    padding: 10px;
+
+    .canvas {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0.1;
+    }
+
+    .title {
+      margin-bottom: 10px;
+    }
+
+    .volume-wrapper {
+      position: absolute;
+      right: 10px;
+      bottom: 35px;
+
+      .volume-bar {
+        position: relative;
+        cursor: pointer;
+        height: 80px;
+        max-height: 80px;
+        width: 20px;
+        background: #f1f1f1;
+
+        svg {
+          position: absolute;
+          display: inline-block;
+          width: 16px;
+          padding: 5px 0 0 2px;
+          margin: auto;
+          bottom: -25px;
+          fill: #e18138;
+        }
+
+        .volume-inner {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 68%;
+          background: $accentColor;
+        }
+      }
+    }
+
+    .progress-wrapper {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      margin-left: -10px;
+
+      .progress-bar {
+        // border-top: 1px solid #000;
+        // border-bottom: 1px solid #000;
+        background: #e0e0e0;
+        width: 100%;
+        height: 5px;
+        cursor: pointer;
+        transition: height .3s;
+
+        &:hover{
+          height: 8px;
+        }
+
+        .inner-progress {
+          transition: width .3s;
+          background: $accentColor;
+          height: 100%;
+          width: 0;
+        }
+      }
+    }
+  }
+}
