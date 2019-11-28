@@ -20,12 +20,15 @@ export class SwavePlayer {
   componentWillLoad() {
     this.swave = new Swave({ audioUrl: this.audioUrl });
     this.swave.disableVisualization();
-    this.swave.audio.ontimeupdate = () => {
-      this.currentTime = this.swave.audio.currentTime;
-    }
-    this.swave.audio.onloadedmetadata = () => {
-      this.totalTime = this.swave.audio.duration;
-    }
+
+    this.swave.getDuration().then(duration => {
+      this.totalTime = duration;
+    })
+
+    this.swave.subscribeToOnTimeUpdate((data) => {
+      this.currentTime = data.currentTime;
+      console.log(data)
+    })
   }
 
   componentDidLoad() {

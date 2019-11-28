@@ -27,6 +27,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "swave": "^1.0.7"
+    "swave": "^1.0.10"
   }
 }
