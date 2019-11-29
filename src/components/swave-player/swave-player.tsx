@@ -7,18 +7,21 @@ import Swave from "swave";
 })
 export class SwavePlayer {
   @Prop() audioUrl: string;
+  @Prop() captionUrl: string;
   @Prop() audioTitle: string;
   @State() private plays = false;
   @State() private currentTime;
   @State() private totalTime;
   @State() private muted: boolean = false;
   @State() private currentVolume: number = 0.5;
+  @State() private currentCaption: string = null;
+  @State() private showCaptions: boolean = false;
   @Element() private element: HTMLElement;
   private swave: any;
   private captureMouse: boolean = false;
 
   componentWillLoad() {
-    this.swave = new Swave({ audioUrl: this.audioUrl });
+    this.swave = new Swave({ audioUrl: this.audioUrl, captionUrl: this.captionUrl });
     this.swave.disableVisualization();
 
     this.swave.getDuration().then(duration => {
@@ -27,7 +30,12 @@ export class SwavePlayer {
 
     this.swave.subscribeToOnTimeUpdate((data) => {
       this.currentTime = data.currentTime;
-      console.log(data)
+      if (data.captions && data.captions.text && this.showCaptions) {
+        this.currentCaption = data.captions.text;
+      } else {
+        this.currentCaption = null;
+      }
+
     })
   }
 
@@ -91,6 +99,7 @@ export class SwavePlayer {
   togglePlay() {
     this.plays = !this.plays;
     this.plays ? this.play() : this.pause();
+    this.currentCaption = null;
   }
 
   toggleMute() {
@@ -98,6 +107,9 @@ export class SwavePlayer {
     this.swave.gainNode.gain.value = this.muted ? 0 : this.currentVolume;
   }
 
+  toggleCaptions() {
+    this.showCaptions = !this.showCaptions;
+  }
 
   render() {
     return <div class='swave-player'>
@@ -121,7 +133,16 @@ export class SwavePlayer {
         <div class="title">
           {this.audioTitle}
         </div>
-
+        <div class="cc-wrapper">
+          <div class={this.showCaptions ? 'cc-btn cc-btn-active' : 'cc-btn'} onClick={() => this.toggleCaptions()}>
+            CC
+          </div>
+          <div class="cc-content">
+            <span style={{ display: this.currentCaption ? 'inline' : 'none'}}>
+              {this.currentCaption}
+            </span>
+          </div>
+        </div>
         <div class="progress-wrapper">
           <div class="progress-bar" onClick={($event) => this.setProgress($event)}>
             <div class="inner-progress" style={{ width: (this.currentTime / this.totalTime) * 100 + '%' }}>

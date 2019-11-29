@@ -27,6 +27,7 @@ export namespace Components {
   interface SwavePlayer {
     'audioTitle': string;
     'audioUrl': string;
+    'captionUrl': string;
   }
 }
 
@@ -68,6 +69,7 @@ declare namespace LocalJSX {
   interface SwavePlayer {
     'audioTitle'?: string;
     'audioUrl'?: string;
+    'captionUrl'?: string;
   }
 
   interface IntrinsicElements {

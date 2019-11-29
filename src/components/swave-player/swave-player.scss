@@ -137,6 +137,43 @@ $accentColor: #E89005;
       }
     }
 
+    .cc-wrapper {
+      display: flex;
+      position: absolute;
+      width: calc(100% - 50px);
+      bottom: 10px;
+      left: 10px;
+
+      .cc-btn{
+        padding: 2px 5px;
+        align-self: flex-end;
+        font-size: 12px;
+        border: 1px solid $accentColor;
+        color: $accentColor;
+        display: inline-block;
+        border-radius: 3px;
+        cursor: pointer;
+
+        &.cc-btn-active {
+          background: $accentColor;
+          color: #fff;
+        }
+      }
+
+      .cc-content {
+        flex:1;
+        display: inline;
+        text-align: center;
+
+        span {
+          background: $accentColor;
+          padding: 2px;
+          color: #fff;
+          font-size: 20px;
+        }
+      }
+    }
+
     .progress-wrapper {
       position: absolute;
       bottom: 0;
